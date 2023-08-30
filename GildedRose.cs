@@ -1,4 +1,6 @@
-﻿using System;
+﻿using csharp.Enums;
+using csharp.ItemRules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,32 +8,20 @@ namespace csharp
 {
     public class GildedRose
     {
-
         private int _noOfDays { get; set; } = 31;
 
-        public IList<Item> Items;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public GildedRose()
-        {
-
-        }
-
+        public IList<Item> _items;
 
         public GildedRose(IList<Item> Items, int NoOfDays)
         {
             if (Items != null && NoOfDays > 0)
             {
-                this.Items = Items;
+                this._items = Items;
                 this._noOfDays = NoOfDays;
             }
         }
 
         #region Private Methods
-
-
 
         #endregion
 
@@ -40,7 +30,7 @@ namespace csharp
         /// <summary>
         /// 
         /// </summary>
-        public void PrintItemInfoConsole()
+        public void CalculateAndPrintItemInfo()
         {
             int dayCounter = 0;
             while (dayCounter < _noOfDays)
@@ -48,87 +38,63 @@ namespace csharp
                 Console.WriteLine("-------- day " + dayCounter + " --------");
                 Console.WriteLine("name, sellIn, quality");
 
-                Items.ToList().ForEach(x =>
+                _items.ToList().ForEach(item =>
                 {
-                    System.Console.WriteLine(x);
-
+                    System.Console.WriteLine(item);
+                    GildedRose.UpdateQuality(item);
                 });
                 Console.WriteLine("");
-                this.UpdateQuality();
                 dayCounter++;
             }
         }
 
-        public void UpdateItemInfo()
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CalculateItemInfo()
         {
             int dayCounter = 0;
             while (dayCounter < _noOfDays)
             {
-                this.UpdateQuality();
+
+                _items.ToList().ForEach(item =>
+                {
+                    GildedRose.UpdateQuality(item);
+
+                });
                 dayCounter++;
             }
         }
         /// <summary>
         /// 
         /// </summary>
-        public void UpdateQuality()
+        public static void UpdateQuality(Item item)
         {
-            for (var i = 0; i < Items.Count; i++)
+            IItemRule itemType = null;
+            switch (item.Name)
             {
-                // "Aged Brie" actually increases in Quality the older it gets
-                // At the end of each day our system lowers both values for every item
-                if (Items[i].Name == "Aged Brie")
-                {
-                    Items[i].Quality = Items[i].Quality + 1;
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                }
-                // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality					
-                else if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
-                {
-                }
-
-                //Backstage passes", like aged brie, increases in Quality as it's SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 //after the concert
-                else if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    Items[i].SellIn--;
-
-                    if (Items[i].Quality < 50)
-                    {
-                        Items[i].Quality += 1;
-
-                        if (Items[i].Quality < 50)
-                        {
-                            if (Items[i].SellIn <= 10)
-                            {
-                                Items[i].Quality += 1;
-                            }
-
-                            if (Items[i].SellIn <= 5)
-                            {
-                                Items[i].Quality += 1;
-                            }
-
-                            if (Items[i].SellIn < 0)
-                            {
-                                Items[i].Quality = 0;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                    Items[i].Quality = Items[i].Quality - 1;
-
-                    if (Items[i].SellIn < 0)
-                    {
-                        Items[i].Quality = Items[i].Quality - 1;
-                    }
-                }
+                case ItemType.AgedBrie:
+                    itemType = new AgedBrie();
+                    itemType.UpdateItemRule(item);
+                    break;
+                case ItemType.BackstagePass:
+                    itemType = new BackstagePass();
+                    itemType.UpdateItemRule(item);
+                    break;
+                case ItemType.SulfurasHandRagnaros:
+                    itemType = new SulfurasHandRagnaros();
+                    itemType.UpdateItemRule(item);
+                    break;
+                case ItemType.Conjured:
+                    itemType = new Conjured();
+                    itemType.UpdateItemRule(item);
+                    break;
+                default:
+                    itemType = new Others();
+                    itemType.UpdateItemRule(item);
+                    break;
             }
         }
-
-
         #endregion
     }
 }

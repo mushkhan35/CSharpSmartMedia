@@ -20,7 +20,7 @@ namespace csharp
             var items = LoadItems();
             var app = new GildedRose(items, 31);
 
-            app.PrintItemInfoConsole();
+            app.CalculateAndPrintItemInfo();
         }
 
         private static List<Item> LoadItems()
