@@ -5,7 +5,7 @@ namespace csharp.ItemRules
     /// 
     /// </summary>
     public abstract class GeneralItem
-    { 
+    {
         public abstract void ItemRule(Item item);
 
         /// <summary>
@@ -14,8 +14,15 @@ namespace csharp.ItemRules
         /// <param name="item"></param>
         public void GeneralRule(Item item)
         {
-            item.Quality++;
+            // The Quality of an item is never more than 50
+            if (item.Quality > 0 && item.Quality < 50)
+                item.Quality++;
+            // The Quality of an item is never negative
+            if (item.Quality < 0)
+                item.Quality = 0;
             item.SellIn--;
+            if (item.SellIn <= 0)
+                item.SellIn--;
         }
     }
 }

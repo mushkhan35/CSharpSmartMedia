@@ -8,7 +8,7 @@ namespace csharp
 {
     public class GildedRose
     {
-        private int _noOfDays { get; set; } = 31;
+        private int _noOfDays { get; set; }  
 
         public IList<Item> _items;
 

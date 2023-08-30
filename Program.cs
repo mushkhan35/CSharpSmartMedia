@@ -15,10 +15,11 @@ namespace csharp
         /// </summary>
         public static void Main(string[] args)
         {
+            int _noOfDays = 5;
             Console.WriteLine("OMGHAI!");
 
             var items = LoadItems();
-            var app = new GildedRose(items, 31);
+            var app = new GildedRose(items, _noOfDays);
 
             app.CalculateAndPrintItemInfo();
         }
