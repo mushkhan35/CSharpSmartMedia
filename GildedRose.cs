@@ -56,11 +56,9 @@ namespace csharp
             int dayCounter = 0;
             while (dayCounter < _noOfDays)
             {
-
                 _items.ToList().ForEach(item =>
                 {
                     GildedRose.UpdateQuality(item);
-
                 });
                 dayCounter++;
             }
@@ -74,24 +72,24 @@ namespace csharp
             switch (item.Name)
             {
                 case ItemType.AgedBrie:
-                    itemType = new AgedBrie();
-                    itemType.UpdateItemRule(item);
+                    itemType = new AgedBrieItem();
+                    itemType.ItemRule(item);
                     break;
                 case ItemType.BackstagePass:
-                    itemType = new BackstagePass();
-                    itemType.UpdateItemRule(item);
+                    itemType = new BackstagePassItem();
+                    itemType.ItemRule(item);
                     break;
                 case ItemType.SulfurasHandRagnaros:
                     itemType = new SulfurasHandRagnaros();
-                    itemType.UpdateItemRule(item);
+                    itemType.ItemRule(item);
                     break;
                 case ItemType.Conjured:
-                    itemType = new Conjured();
-                    itemType.UpdateItemRule(item);
+                    itemType = new ConjuredItem();
+                    itemType.ItemRule(item);
                     break;
                 default:
-                    itemType = new Others();
-                    itemType.UpdateItemRule(item);
+                    itemType = new StandardItem();
+                    itemType.ItemRule(item);
                     break;
             }
         }

@@ -2,8 +2,9 @@
 
 namespace csharp.ItemRules
 {
-    interface IItemRule
+    public interface IItemRule
     {
-        void UpdateItemRule(Item item);
+        //void UpdateItemRule(Item item);
+        void ItemRule(Item item);
     }
 }
