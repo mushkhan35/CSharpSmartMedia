@@ -15,7 +15,7 @@ namespace csharp
         /// </summary>
         public static void Main(string[] args)
         {
-            int _noOfDays = 5;
+            int _noOfDays = 31;
             Console.WriteLine("OMGHAI!");
 
             var items = LoadItems();

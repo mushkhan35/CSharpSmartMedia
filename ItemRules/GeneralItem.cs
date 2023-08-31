@@ -20,9 +20,12 @@ namespace csharp.ItemRules
             // The Quality of an item is never negative
             if (item.Quality < 0)
                 item.Quality = 0;
+
             item.SellIn--;
-            if (item.SellIn <= 0)
-                item.SellIn--;
+
+            //Once the sell by date has passed, Quality degrades twice as fast
+            if (item.SellIn < 0)
+                item.SellIn = item.SellIn - 1;
         }
     }
 }

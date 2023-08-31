@@ -32,7 +32,6 @@
                 }
             }
 
-            
             // Quality drops to 0 after the concert
             if (item.SellIn < 0)
             {
