@@ -10,5 +10,6 @@
         public const string Others = "+5 Dexterity Vest";
         public const string ElixirMongoose = "Elixir of the Mongoose";
         public const string SulfurasHandRagnaros = "Sulfuras, Hand of Ragnaros";
+        public const string StandardRule = "StandardRule";
     }
 }

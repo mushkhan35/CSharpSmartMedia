@@ -4,7 +4,7 @@ namespace csharp.ItemRules
     /// <summary>
     /// 
     /// </summary>
-    public class ConjuredItem : GeneralItem, IItemRule
+    public class ConjuredRule : UniversalRule
     {
         /// <summary>
         ///  "Conjured" items degrade in Quality twice as fast as normal items
@@ -12,7 +12,14 @@ namespace csharp.ItemRules
         /// <param name="item"></param>
         public override void ItemRule(Item item)
         {
-            this.GeneralRule(item);
+            this.UniversalRuleApply(item);
+            this.ConjuredRuleApply(item);
+        }
+
+
+        private void ConjuredRuleApply(Item item)
+        {
+
             item.Quality -= 1;
         }
     }

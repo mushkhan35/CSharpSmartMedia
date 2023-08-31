@@ -11,7 +11,7 @@ namespace csharp
     {
 
         /// <summary>
-        /// 
+        ///  Start of the program.
         /// </summary>
         public static void Main(string[] args)
         {
@@ -22,8 +22,14 @@ namespace csharp
             var app = new GildedRose(items, _noOfDays);
 
             app.CalculateAndPrintItemInfo();
+
+            Console.ReadLine();
         }
 
+        /// <summary>
+        /// This is the data for the application
+        /// </summary>
+        /// <returns></returns>
         private static List<Item> LoadItems()
         {
 

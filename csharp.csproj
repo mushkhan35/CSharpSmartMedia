@@ -65,13 +65,13 @@
     <Compile Include="Enums\ItemType.cs" />
     <Compile Include="GildedRose.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="ItemRules\AgedBrieItem.cs" />
-    <Compile Include="ItemRules\BackstagePassItem.cs" />
-    <Compile Include="ItemRules\ConjuredItem.cs" />
-    <Compile Include="ItemRules\GeneralItem.cs" />
-    <Compile Include="ItemRules\Interface\IItemRule.cs" />
-    <Compile Include="ItemRules\StandardItem.cs" />
-    <Compile Include="ItemRules\SulfurasHandRagnaros.cs" />
+    <Compile Include="RuleType\AgedBrieRule.cs" />
+    <Compile Include="RuleType\BackstagePassRule.cs" />
+    <Compile Include="RuleType\ConjuredIRule.cs" />
+    <Compile Include="RuleType\GeneralRule\UniversalRule.cs" />
+    <Compile Include="RuleType\Interface\IItemRule.cs" />
+    <Compile Include="RuleType\OtherGoodRule.cs" />
+    <Compile Include="RuleType\SulfurasHandRagnarosRule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

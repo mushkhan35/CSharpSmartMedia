@@ -10,7 +10,7 @@ namespace csharp
     {
         private int _noOfDays { get; set; }  
 
-        public IList<Item> _items;
+        public IList<Item> _items;       
 
         public GildedRose(IList<Item> Items, int NoOfDays)
         {
@@ -28,7 +28,7 @@ namespace csharp
         #region Public Methods
 
         /// <summary>
-        /// 
+        /// This method is responsible to 
         /// </summary>
         public void CalculateAndPrintItemInfo()
         {
@@ -72,27 +72,28 @@ namespace csharp
             switch (item.Name)
             {
                 case ItemType.AgedBrie:
-                    itemType = new AgedBrieItem();
+                    itemType = new AgedBrieRule();
                     itemType.ItemRule(item);
                     break;
                 case ItemType.BackstagePass:
-                    itemType = new BackstagePassItem();
+                    itemType = new BackstagePassRule();
                     itemType.ItemRule(item);
                     break;
                 case ItemType.SulfurasHandRagnaros:
-                    itemType = new SulfurasHandRagnaros();
+                    itemType = new SulfurasHandRagnarosRule();
                     itemType.ItemRule(item);
                     break;
                 case ItemType.Conjured:
-                    itemType = new ConjuredItem();
+                    itemType = new ConjuredRule();
                     itemType.ItemRule(item);
                     break;
                 default:
-                    itemType = new StandardItem();
+                    itemType = new OtherGoodRule();
                     itemType.ItemRule(item);
                     break;
             }
         }
+       
         #endregion
     }
 }
